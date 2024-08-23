@@ -56,7 +56,7 @@ export default {
     },
 
     getinfo(context, data) {
-      console.log("updated token " + context.state.token);
+      //console.log("updated token " + context.state.token);
       $.ajax({
         url: "http://127.0.0.1:3000/user/account/info/",
         type: "get",
@@ -64,7 +64,7 @@ export default {
           Authorization: "Bearer " + context.state.token,
         },
         success(resp) {
-          console.log(resp);
+          //console.log(resp);
           if (resp.error_message === "success") {
             context.commit("updateUser", {
               ...resp,
