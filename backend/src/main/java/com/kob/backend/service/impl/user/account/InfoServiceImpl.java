@@ -21,7 +21,7 @@ public class InfoServiceImpl implements InfoService {
         User user = loginUser.getUser();
 
         Map<String, String> info = new HashMap<>();
-        info.put("error message", "success");
+        info.put("error_message", "success");
         info.put("id", user.getId().toString());
         info.put("username", user.getUsername());
         info.put("photo", user.getPhoto());
