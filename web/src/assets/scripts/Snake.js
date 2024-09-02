@@ -15,7 +15,7 @@ export class Snake extends GameObject {
     this.direction = -1;
     this.status = "idle"; // idle, moving, dead
     this.dr = [-1, 0, 1, 0];
-    this.dc = [0, -1, 0, 1];
+    this.dc = [0, 1, 0, -1];
 
     this.step = 0;
     this.eps = 1e-2;
@@ -57,16 +57,12 @@ export class Snake extends GameObject {
       this.grids[0].c + this.dc[d]
     );
     this.direction = -1;
-    this.status = "moving";
+    this.status = "move";
     this.step++;
 
     const k = this.grids.length;
     for (let i = k; i > 0; i--) {
       this.grids[i] = JSON.parse(JSON.stringify(this.grids[i - 1]));
-    }
-
-    if (!this.gamemap.check_valid(this.next_grid)) {
-      this.status = "dead";
     }
   }
 
@@ -100,7 +96,7 @@ export class Snake extends GameObject {
   }
 
   update() {
-    if (this.status === "moving") {
+    if (this.status === "move") {
       this.update_body();
     }
     this.render();
@@ -111,7 +107,7 @@ export class Snake extends GameObject {
     const ctx = this.gamemap.ctx;
 
     ctx.fillStyle = this.color;
-    if (this.status === "dead") {
+    if (this.status === "die") {
       ctx.fillStyle = "white";
     }
 
